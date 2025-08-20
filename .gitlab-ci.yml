@@ -1,0 +1,45 @@
+variables:
+  VM_FILE:
+    value: "at-consulting"  
+    options:
+      - "at-consulting"
+      - "sed"
+      - "sed3"
+    description: "Переменная для имени файла с ID виртуальных машин"
+  PROJECT_ID:
+    value: "[MASKED]"
+    description: "ID проекта в cloudate с ВМ, которые нужно выключить"
+  CLOUDATE_TOKEN: 
+    value: "[MASKED]"
+    description: "Переменная для токена Cloudate"
+  ZABBIX_TOKEN:
+    value: "[MASKED]"  
+    description: "Переменная для токена Zabbix"
+
+default:
+  image: gitlab.akb-it.ru:4567/esd-mvd-ext/devops/cloudate-api/mcurl:alpine
+  before_script:
+    - bash ids.sh
+
+stages:
+  - power_off
+  - power_on
+  - status
+
+power_off:
+  stage: power_off
+  script:
+    - bash power_off.sh
+  when: manual
+
+power_on:
+  stage: power_on
+  script:
+    - bash power_on.sh
+  when: manual
+
+status:
+  stage: status
+  script:
+    - bash status.sh
+  when: manual
