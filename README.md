@@ -55,6 +55,3 @@
 ```bash
 [MASKED]
 ```
-rs1db1-sed3-rtech-ru:127860
-bundle-1-sed3-rtech-ru:124089
-```
